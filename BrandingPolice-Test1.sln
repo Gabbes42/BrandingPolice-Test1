@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28010.2041
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{38023EF3-7935-478E-8004-8EA25E3B2015}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrandingPolice_WebJob", "..\..\..\Downloads\BrandingPolice_WebJob\BrandingPolice_WebJob\BrandingPolice_WebJob\BrandingPolice_WebJob.csproj", "{0294ADE0-3483-4E37-A342-61FAEB66A2E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebJob", "WebJob\WebJob.csproj", "{2824E349-0493-48F7-A955-2442ACBF97F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{38023EF3-7935-478E-8004-8EA25E3B2015}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38023EF3-7935-478E-8004-8EA25E3B2015}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38023EF3-7935-478E-8004-8EA25E3B2015}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0294ADE0-3483-4E37-A342-61FAEB66A2E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0294ADE0-3483-4E37-A342-61FAEB66A2E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0294ADE0-3483-4E37-A342-61FAEB66A2E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0294ADE0-3483-4E37-A342-61FAEB66A2E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2824E349-0493-48F7-A955-2442ACBF97F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2824E349-0493-48F7-A955-2442ACBF97F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2824E349-0493-48F7-A955-2442ACBF97F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2824E349-0493-48F7-A955-2442ACBF97F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
