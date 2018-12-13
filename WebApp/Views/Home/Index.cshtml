@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="jumbotron">
+    <h3>Branding Police</h3>
+    <h5>Upload your powerpoint file to the cloud, where it will be analyzed if it contains the given words or whole string.</h5>
+</div>
+
+<div>
+    <form asp-controller="Blobs" asp-action="Upload">
+        <!-- <center>
+            <p>
+                Word to find: <input type="text" name="SearchString">
+                <input type="submit" value="Filter" />
+            </p>
+        </center>-->
+
+
+        <button> Upload</button>
+    </form>
+
+    <form method="post" enctype="multipart/form-data" asp-controller="Blobs" asp-action="Post">
+        <label for="input">Please select a *.ppt or *.pptx file to scan. </label>
+        <input id="input" name="searchString">
+        <div class="form-group">
+            <div class="col-md-10">
+                <p>Upload one or more files using this form:</p>
+                <input type="file" name="files" multiple />
+            </div>
+        </div>
+        <div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="submit" value="Upload" />
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+
+
+</div>
+<br />
