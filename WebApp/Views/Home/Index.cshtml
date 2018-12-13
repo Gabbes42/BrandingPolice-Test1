@@ -7,39 +7,32 @@
     <h5>Upload your powerpoint file to the cloud, where it will be analyzed if it contains the given words or whole string.</h5>
 </div>
 
-<div>
-    <form asp-controller="Blobs" asp-action="Upload">
-        <!-- <center>
-            <p>
-                Word to find: <input type="text" name="SearchString">
-                <input type="submit" value="Filter" />
-            </p>
-        </center>-->
+<form method="post" enctype="multipart/form-data" asp-controller="Blobs" asp-action="Post" lang="en">
+    <label for="input">Which word are you looking for? </label>
+    <input id="input" name="searchString">
+    <input id="file" type="file" name="files" multiple onchange="DisplayFilesToUpload()" accept=".ppt,.pptx,.txt" required/>
+    <p id="FilesToUpload"></p>
 
+    <br />
+    <input type="submit" value="Analize" />
 
-        <button> Upload</button>
-    </form>
+</form>
 
-    <form method="post" enctype="multipart/form-data" asp-controller="Blobs" asp-action="Post">
-        <label for="input">Please select a *.ppt or *.pptx file to scan. </label>
-        <input id="input" name="searchString">
-        <div class="form-group">
-            <div class="col-md-10">
-                <p>Upload one or more files using this form:</p>
-                <input type="file" name="files" multiple />
-            </div>
-        </div>
-        <div>
-            <div class="form-group">
-                <div class="col-md-10">
-                    <input type="submit" value="Upload" />
-                </div>
-            </div>
-        </div>
-    </form>
+<script>
+    //Lists the file name and size for all files to be uploaded by updating the <p id="FilesToUpload"></p> control
+    function DisplayFilesToUpload() {
+        var element = document.getElementById("file");
+        var html = "";
 
+        html = "<h6>Powerpoint file(s) to Upload</h6>"
+        for (var i = 0; i < element.files.length; i++) {
+            html += "<strong>" + (i + 1) + "</strong>. File: ";
+            var file = element.files[i];
+            if ('name' in file) { html += file.name + " ("; }
+            if ('size' in file) { html += "size: " + file.size + " bytes)<br>"; }
+        }
 
+        document.getElementById("FilesToUpload").innerHTML = html;
+    }
 
-
-</div>
-<br />
+</script>
