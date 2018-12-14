@@ -68,13 +68,15 @@ namespace WebApp.Controllers
 
             foreach (var formFile in files)
             {
+                string fileName = formFile.FileName;
+
                 if (formFile.Length <= 0)
                 {
                     continue;
                 }
 
                 // Create a blob for each uploaded file
-                CloudBlockBlob file = container.GetBlockBlobReference("ppt_" + formFile.FileName);
+                CloudBlockBlob file = container.GetBlockBlobReference("ppt_" + fileName);
 
                 // Create a blob for each result
                 //CloudBlockBlob result = container.GetBlockBlobReference("results_" + formFile.FileName +".txt");
@@ -91,8 +93,8 @@ namespace WebApp.Controllers
 
                 // Build the string for the queue message
                 String storageName = blobContainerName;
-                String filePathPresentation = file.Uri.ToString();
-                String filePathResult = container.Uri.ToString()+ "/results_" + formFile.FileName + ".txt";
+                String filePathPresentation = file.Name;
+                String filePathResult = "results_" + fileName + ".txt";
                 String stringDelimiter = "|||";
                 String completeStringForSending = "";
                 completeStringForSending = storageName
@@ -105,7 +107,7 @@ namespace WebApp.Controllers
                 await queue.AddMessageAsync(message);
 
                 // Display URI 
-                ViewData["resultUri"] = filePathResult.ToString();
+                 ViewData["resultUri"] = container.Uri.ToString() + "/" + filePathResult.ToString();
             }
 
             if (!uploadSuccess)

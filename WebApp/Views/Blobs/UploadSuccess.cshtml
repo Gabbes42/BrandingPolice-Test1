@@ -4,36 +4,14 @@
 
 <div class="jumbotron">
     <h3>Branding Police</h3>
-    <h5>The file is successfully uploaded into the cloud blob storage</h5>
-    <h5><p id="FilesToUpload">Please wait until your presentation is analized...</p></h5>    
+    <h5>Successfully uploaded into the cloud blob storage</h5>
+    <p id="link">Please wait, your data is beeing processed</p>
+    <object id="file" data="https://brandingpolice.blob.core.windows.net/uploadppts/results_test.pptx.txt" type="text/plain" width="680" height="180"></object>
 </div>
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
-    var resultUrl = "@ViewData["resultUri"]";
-
-
-   /* function poll() {
-        console.log("Polling " + resultUrl);
-        $.ajax();
-    }
-
-    $.ajaxSetup({
-        url: resultUrl,
-        success: function (data) {
-            console.log("Poll successfull");
-            document.getElementById("FilesToUpload").innerHTML = resultUrl;
-        },
-        dataType: "text",
-        complete: poll,
-        timeout: 30000
-    });
-
-    (function () {
-        $.ajax();
-    }()); */
-
+    var urlResult = "@ViewData["resultUri"]";
     var isActive = true;
 
     $().ready(function () {
@@ -46,13 +24,12 @@
         if (isActive) {
             window.setTimeout(function () {
                 $.ajax({
-                    url: resultUrl,
+                    url: urlResult,
                     type: "GET",
-                    success: function (result) {
+                    success: function () {
                         console.log("Poll successfull");
-                        document.getElementById("FilesToUpload").innerHTML = resultUrl;
-
-                        //pollServer();
+                        document.getElementById("link").innerHTML = "<a href={" + urlResult + "}>" + urlResult + "</a>";
+                        var fenster = window.open(urlResult);
                     },
                     error: function () {
                         console.log("Poll error");

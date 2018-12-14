@@ -19,8 +19,6 @@ namespace WebApp.Controllers
         // GET: Home/About
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
-
             return View();
         }
 
