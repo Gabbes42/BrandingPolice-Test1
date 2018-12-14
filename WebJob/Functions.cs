@@ -49,16 +49,18 @@ namespace WebJob
                 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(storageConnectionString);
 
                 // Create the blob client.
-                //CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+                CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
                 // Retrieve reference to a previously created container.
-                //CloudBlobContainer container = blobClient.GetContainerReference(storageName);
+                CloudBlobContainer container = blobClient.GetContainerReference(storageName);
 
                 // Retrieve reference to the blobs for the PowerPoint- and result-text-file.
                 //CloudBlob powerPointBlob = container.GetBlobReference(powerPointFileName);
                 //CloudBlob resultTextBlob = container.GetBlobReference(resultTextFileName);
                 CloudBlockBlob powerPointBlockBlob = new CloudBlockBlob(new Uri(powerPointFileUrl), storageAccount.Credentials);
-                CloudBlockBlob resultTextblockBlob = new CloudBlockBlob(new Uri(resultTextFileUrl), storageAccount.Credentials);
+
+                string resultName = "results_" + powerPointBlockBlob.Name.Substring(4) + ".txt";
+                CloudBlockBlob resultTextblockBlob = container.GetBlockBlobReference(resultName);
 
                 if (!powerPointBlockBlob.Exists())
                     logger.LogWarning("The Blob " + powerPointBlockBlob.Name + " don't exists. Aborded.");

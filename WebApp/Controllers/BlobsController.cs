@@ -77,10 +77,10 @@ namespace WebApp.Controllers
                 CloudBlockBlob file = container.GetBlockBlobReference("ppt_" + formFile.FileName);
 
                 // Create a blob for each result
-                CloudBlockBlob result = container.GetBlockBlobReference("results_" + formFile.FileName +".txt");
+                //CloudBlockBlob result = container.GetBlockBlobReference("results_" + formFile.FileName +".txt");
 
                 // Fill the result file
-                await result.UploadTextAsync("Working on ppt_\"" + formFile.FileName+ "\"");
+                //await result.UploadTextAsync("Working on ppt_\"" + formFile.FileName+ "\"");
 
                 // Upload the file
                 using (var stream = formFile.OpenReadStream())
@@ -92,7 +92,7 @@ namespace WebApp.Controllers
                 // Build the string for the queue message
                 String storageName = blobContainerName;
                 String filePathPresentation = file.Uri.ToString();
-                String filePathResult = result.Uri.ToString();
+                String filePathResult = container.Uri.ToString()+ "/results_" + formFile.FileName + ".txt";
                 String stringDelimiter = "|||";
                 String completeStringForSending = "";
                 completeStringForSending = storageName
@@ -105,7 +105,7 @@ namespace WebApp.Controllers
                 await queue.AddMessageAsync(message);
 
                 // Display URI 
-                ViewData["resultUri"] = result.Uri.ToString();
+                ViewData["resultUri"] = filePathResult.ToString();
             }
 
             if (!uploadSuccess)
